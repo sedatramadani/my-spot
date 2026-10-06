@@ -1,47 +1,110 @@
-// 1. Added useEffect to the import
-import React, { useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 
-export default function MyForm() {
-  const [email, setEmail] = useState("");
-  const [data, setData] = useState(null);
+export function MyForm() {
+  const form = useRef();
+  const [status, setStatus] = useState({
+    loading: false,
+    success: false,
+    error: "",
+  });
 
-  useEffect(() => {
-    (async () => {
-      try {
-        const response = await fetch("http://127.0.0.1:5000/api/data");
-        const result = await response.json();
-        setData(result);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    })();
-  }, [data]);
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setStatus({ loading: true, success: false, error: "" });
 
-  const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const SERVICE_ID = "service_n3knwhr";
+    const TEMPLATE_ID = "template_z9fg2po";
+    const PUBLIC_KEY = "6kZX-hZ3XC3EBusA_";
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert(`You are registered successfully!`);
+    emailjs
+      .sendForm(SERVICE_ID, TEMPLATE_ID, form.current, {
+        publicKey: PUBLIC_KEY,
+      })
+      .then(
+        (result) => {
+          console.log("EmailJS Success:", result.text);
+          // Handle success state
+        },
+        (error) => {
+          console.error("EmailJS Error:", error);
+          // Handle error state
+        },
+      )
+
+      .then(
+        () => {
+          setStatus({ loading: false, success: true, error: "" });
+          form.current.reset();
+        },
+        (error) => {
+          console.error("EmailJS Error:", error);
+          setStatus({
+            loading: false,
+            success: false,
+            error: "Failed to send message. Please check template settings.",
+          });
+        },
+      );
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
+    <form
+      ref={form}
+      onSubmit={sendEmail}
+      className="flex flex-col gap-3 max-w-md text-stone-800"
+    >
+      <div className="flex flex-col">
+        <label className="text-sm font-semibold text-stone-200">Name</label>
+        <input
+          type="text"
+          name="user_name"
+          required
+          className="border border-stone-300 p-2 rounded bg-white text-black focus:outline-none focus:ring-2 focus:ring-amber-800"
+        />
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-sm font-semibold text-stone-200">Email</label>
         <input
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="relative left-400 bottom-100"
+          name="user_email"
+          required
+          className="border border-stone-300 p-2 rounded bg-white text-black focus:outline-none focus:ring-2 focus:ring-amber-800"
         />
-      </label>
+      </div>
+
+      <div className="flex flex-col">
+        <label className="text-sm font-semibold text-stone-200">Message</label>
+        <textarea
+          name="message"
+          required
+          rows="4"
+          className="border border-stone-300 p-2 rounded bg-white text-black focus:outline-none focus:ring-2 focus:ring-amber-800"
+        />
+      </div>
 
       <button
         type="submit"
-        disabled={!isValidEmail}
-        className="relative left-410 bottom-100"
+        disabled={status.loading}
+        className="bg-amber-900 text-white py-2 px-4 rounded hover:bg-amber-950 transition disabled:opacity-50 font-semibold mt-2"
       >
-        Submit
+        {status.loading ? "Sending..." : "Send Message"}
       </button>
+
+      {status.success && (
+        <p className="text-emerald-400 text-sm font-semibold mt-1">
+          ✓ Message sent successfully! Check your inbox.
+        </p>
+      )}
+
+      {status.error && (
+        <p className="text-rose-400 text-sm font-semibold mt-1">
+          {status.error}
+        </p>
+      )}
     </form>
   );
 }
+
+export default MyForm;

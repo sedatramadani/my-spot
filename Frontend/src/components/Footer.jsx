@@ -12,69 +12,75 @@ import MyForm from "./MyForm";
 
 export default function Footer() {
   return (
-    <div className="min-h-screen w-full bg-[url('/electric-gold.jpg')] bg-cover bg-center bg-no-repeat opacity-70">
-      <h1 className=" relative text-left text-3xl text-black top-50 mx-30  ">
-        My Spot
-      </h1>
-      <p className="relative right-180 text-base mx-190 top-70">
-        <b>My Spot</b> is your daily haven for expertly crafted coffee, fresh
-        pastries, and warm conversations. From our first morning pour to your
-        afternoon pick-me-up, we are dedicated to bringing high-quality,
-        sustainably sourced brews to our local community—one cup at a time.
-      </p>
-      <FaYoutube className="relative left-20 top-80 size-13" />
-      <FaInstagramSquare className="relative left-40 top-66 size-13" />
-      <FaFacebook className="relative left-60 top-53 size-13" />
+    <footer className="w-full bg-[url('/electric-gold.jpg')] bg-cover bg-center bg-no-repeat bg-amber-900/90 text-amber-950 py-12 px-6">
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+        {/* Brand Info */}
+        <div className="space-y-4">
+          <h2 className="text-3xl font-extrabold text-amber-950">My Spot</h2>
+          <p className="text-sm leading-relaxed font-medium">
+            <b>My Spot</b> is your daily haven for expertly crafted coffee,
+            fresh pastries, and warm conversations. From our first morning pour
+            to your afternoon pick-me-up, we are dedicated to bringing
+            high-quality brews.
+          </p>
+          <div className="flex gap-4 text-2xl pt-2 text-amber-950">
+            <FaYoutube className="hover:text-red-700 cursor-pointer transition-colors" />
+            <FaInstagramSquare className="hover:text-pink-700 cursor-pointer transition-colors" />
+            <FaFacebook className="hover:text-blue-800 cursor-pointer transition-colors" />
+          </div>
+        </div>
 
-      <h2 className=" relative left-170 text-3xl text-black mx-30 bottom-22  ">
-        Quick links
-      </h2>
+        {/* Quick Links */}
+        <div className="space-y-3">
+          <h3 className="text-xl font-bold text-amber-950">Quick Links</h3>
+          <ul className="space-y-2 text-sm font-semibold">
+            {["Home", "Menu", "Order now", "About Us", "Contact Us"].map(
+              (link) => (
+                <li
+                  key={link}
+                  className="flex items-center gap-2 hover:translate-x-1 transition-transform cursor-pointer"
+                >
+                  <FaArrowRight className="text-xs text-amber-800" />
+                  <span>{link}</span>
+                </li>
+              ),
+            )}
+          </ul>
+        </div>
 
-      <p className="relative text-base text-center bottom-10 right-40">Home</p>
-      <FaArrowRight className="relative left-200 bottom-15" />
-      <p className="relative text-base text-center bottom-10 right-40">Menu</p>
-      <FaArrowRight className="relative left-200 bottom-15" />
-      <p className="relative text-base text-center bottom-10 right-35">
-        Order now
-      </p>
-      <FaArrowRight className="relative left-200 bottom-15" />
-      <p className="relative text-base text-center bottom-10 right-35">
-        About Us
-      </p>
-      <FaArrowRight className="relative left-200 bottom-15" />
-      <p className="relative text-base text-center bottom-10 right-35">
-        Contact Us
-      </p>
-      <FaArrowRight className="relative left-200 bottom-15" />
-      <h2 className=" relative left-250 text-3xl text-black mx-30 bottom-80   ">
-        Contact Us
-      </h2>
-      <p className="relative text-base text-center bottom-70 left-50">
-        Todor Cipovski Merxhan Tetove
-      </p>
-      <MdPlace className="relative left-270 bottom-75" />
-      <p className="relative text-base text-center bottom-70 left-40">
-        072-687-373
-      </p>
-      <FaPhone className="relative left-270 bottom-75" />
-      <p className="relative text-base text-center bottom-70 left-40">
-        myspot@yahoo.com
-      </p>
-      <MdAttachEmail className="relative left-270 bottom-75" />
-      <p className="relative text-base text-center bottom-70 left-40">
-        www.myspot.com
-      </p>
-      <RiFindReplaceLine className="relative left-270 bottom-75" />
+        {/* Contact Us */}
+        <div className="space-y-3">
+          <h3 className="text-xl font-bold text-amber-950">Contact Us</h3>
+          <ul className="space-y-3 text-sm font-medium">
+            <li className="flex items-center gap-3">
+              <MdPlace className="text-lg text-amber-800 flex-shrink-0" />
+              <span>Todor Cipovski Merxhan Tetove</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <FaPhone className="text-sm text-amber-800 flex-shrink-0" />
+              <span>072-687-373</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <MdAttachEmail className="text-lg text-amber-800 flex-shrink-0" />
+              <span>myspot@yahoo.com</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <RiFindReplaceLine className="text-lg text-amber-800 flex-shrink-0" />
+              <span>www.myspot.com</span>
+            </li>
+          </ul>
+        </div>
 
-      <h2 className=" relative left-340 text-3xl text-black mx-30 bottom-130   ">
-        Stay in the Loop
-      </h2>
-      <p className="relative left-180 text-base mx-190 bottom-110">
-        Freshly roasted stories, seasonal brew drops, and subscriber-only perks
-        delivered straight to your inbox—no spam, just good coffee. Drop your
-        email below to claim 10% off your next cup!
-      </p>
-      <MyForm />
-    </div>
+        {/* Newsletter Form */}
+        <div className="space-y-3">
+          <h3 className="text-xl font-bold text-amber-950">Stay in the Loop</h3>
+          <p className="text-xs leading-relaxed font-medium">
+            Freshly roasted stories and subscriber-only perks delivered straight
+            to your inbox.
+          </p>
+          <MyForm />
+        </div>
+      </div>
+    </footer>
   );
 }

@@ -19,7 +19,11 @@ export default function OurCoffee({ onAddToCart }) {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {coffeeData.map((coffee) => (
-            <CoffeeItem key={coffee.id} coffee={coffee} onAddToCart={onAddToCart} />
+            <CoffeeItem
+              key={coffee.id}
+              coffee={coffee}
+              onAddToCart={onAddToCart}
+            />
           ))}
         </div>
       </div>
@@ -29,7 +33,7 @@ export default function OurCoffee({ onAddToCart }) {
 
 function CoffeeItem({ coffee, onAddToCart }) {
   const [selectedSize, setSelectedSize] = useState("");
-  const [quantity, setQuantity] = useState(1); 
+  const [quantity, setQuantity] = useState(1);
   const totalPrice = (coffee.price * quantity).toFixed(2);
 
   const handleAddToCart = () => {
@@ -45,17 +49,19 @@ function CoffeeItem({ coffee, onAddToCart }) {
     if (userConfirmed) {
       if (onAddToCart) {
         onAddToCart({
-          id: `${coffee.id}-${selectedSize}-${Date.now()}`, 
+          id: `${coffee.id}-${selectedSize}-${Date.now()}`,
           name: coffee.name,
           price: coffee.price,
           size: selectedSize,
-          quantity: quantity, 
+          quantity: quantity,
           pic: coffee.pic,
         });
       }
-      alert(`Success! ${quantity}x ${coffee.name} (${selectedSize}) has been added to your cart.`);
+      alert(
+        `Success! ${quantity}x ${coffee.name} (${selectedSize}) has been added to your cart.`,
+      );
       setSelectedSize("");
-      setQuantity(1); 
+      setQuantity(1);
     }
   };
 
@@ -78,13 +84,24 @@ function CoffeeItem({ coffee, onAddToCart }) {
         </p>
 
         <div className="flex gap-2 my-2">
-          <Big isSelected={selectedSize === "Big"} onSelect={() => setSelectedSize("Big")} />
-          <Medium isSelected={selectedSize === "Medium"} onSelect={() => setSelectedSize("Medium")} />
-          <Small isSelected={selectedSize === "Small"} onSelect={() => setSelectedSize("Small")} />
+          <Big
+            isSelected={selectedSize === "Big"}
+            onSelect={() => setSelectedSize("Big")}
+          />
+          <Medium
+            isSelected={selectedSize === "Medium"}
+            onSelect={() => setSelectedSize("Medium")}
+          />
+          <Small
+            isSelected={selectedSize === "Small"}
+            onSelect={() => setSelectedSize("Small")}
+          />
         </div>
 
         <div className="flex items-center justify-between mt-1">
-          <div className="text-amber-400 font-bold text-sm">${coffee.price}</div>
+          <div className="text-amber-400 font-bold text-sm">
+            ${coffee.price}
+          </div>
           <Count value={quantity} onChange={setQuantity} />
         </div>
 

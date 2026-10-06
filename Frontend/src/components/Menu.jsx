@@ -2,195 +2,126 @@ import React from "react";
 
 import Imgcoffee from "../assets/coffee.jpg";
 import Imgcake from "../assets/Cake.jpg";
-
 import ImgMcoffee from "../assets/making-coffee.jpg";
 import ImgMcake from "../assets/making-cake.jpg";
 
+// Static front-end menu data
+const COFFEE_ITEMS = [
+  { name: "Americano", price: "70 Den" },
+  { name: "Latte", price: "90 Den" },
+  { name: "Espresso", price: "50 Den" },
+  { name: "Nescafe", price: "70 Den" },
+  { name: "Icecoffee", price: "70 Den" },
+  { name: "Capuchine", price: "70 Den" },
+];
+
+const BITES_ITEMS = [
+  { name: "Chocolate cake", price: "70 Den" },
+  { name: "Victoria sponge", price: "90 Den" },
+  { name: "Angel food cake", price: "100 Den" },
+  { name: "Black forest cake", price: "70 Den" },
+  { name: "New York cheesecake", price: "80 Den" },
+  { name: "Blueberry Cheesecake", price: "100 Den" },
+];
+
 export default function Menu() {
   return (
-    <div className="h-screen bg-[url('/654321.png')] bg-cover md:bg-center">
-      <img
-        src={ImgMcoffee}
-        alt={ImgMcoffee}
-        className="relative  w-56 h-40 md:object-container top-180 left-60"
-      />
-      <img
-        src={ImgMcake}
-        alt={ImgMcake}
-        className="relative  w-56 h-40 md:object-container bottom-5 left-390"
-      />
-
-      <h1 className="relative text-[40px] md:font-bold md:left-220 bottom-70">
-        Coffee & Bites
-      </h1>
-      <hr class="relative my-4 w-1/2 mx-auto md:border-t border-[#4B2E2B]  bottom-70" />
-      <p className="relative mb-3 md:text-body left-150 bottom-70 ">
-        We serve freshly roasted coffee made from carefully selected beans,
-        brewed with precision and passion.
-      </p>
-      <p className=" relative mb-3 md:text-body left-160 bottom-70  ">
-        Pair your cup with our handmade desserts and enjoy a warm, cozy moment
-        in every sip.
-      </p>
-      <hr class="relative my-4 w-1/2 mx-auto md:border-t border-[#4B2E2B] bottom-70" />
-
-      <div
-        className="relative bg-amber-900 p-20 
-           max-w-4/10 md:bottom-70 max-h-5/10 left-40 "
-      >
-        <h3 className="relative text-[#F8F5F0] md:font-bold md:left-20 font-serif">
-          Coffee
-        </h3>
-        <hr class=" relative my-4 w-1/2 mx-auto md:border-t border-[#F8F5F0] right-50" />
-        <div>
-          <img
-            src={Imgcoffee}
-            className="relative  w-96 h-48 md:object-cover rotate-12 left-80"
-          />
-        </div>
-        <p className="relative md:tracking-tight text-[#F8F5F0] border-3 border-brown w-40 h-10 pl-8 p-2 left-120 top-2 font-bold">
-          Coffee
-        </p>
-
-        <div class="relative overflow-x-auto md:bottom-40">
-          <table class="w-64 text-xs text-left md:text-body ">
-            <thead class="text-xs md:bg-neutral-secondary-medium"></thead>
-
-            <tbody>
-              <tr class="bg-neutral-primary">
-                <th class="px-3 py-2 font-medium md:text-heading whitespace-nowrap text-[#F8F5F0] dark:text-sky-400">
-                  Americano
-                </th>
-
-                <td class="px-3 py-2  md:text-[#F8F5F0] dark:text-sky-400">
-                  70 Den
-                </td>
-              </tr>
-
-              <tr class="md:bg-neutral-primary">
-                <th class="px-3 py-2 font-medium text-heading whitespace-nowrap text-[#F8F5F0] dark:text-sky-400">
-                  Latte
-                </th>
-                <td class="px-3 py-2  text-[#F8F5F0] dark:text-sky-400">
-                  90 Den
-                </td>
-              </tr>
-
-              <tr class="md:bg-neutral-primary">
-                <th class="px-3 py-2 md:font-medium text-heading whitespace-nowrap text-[#F8F5F0] dark:text-sky-400">
-                  Espresso
-                </th>
-
-                <td class="md:px-3 py-2  text-[#F8F5F0] dark:text-sky-400">
-                  50 Den
-                </td>
-              </tr>
-              <tr class="md:bg-neutral-primary">
-                <th class="px-3 py-2 md:font-medium text-heading whitespace-nowrap text-[#F8F5F0] dark:text-sky-400">
-                  Nescafe
-                </th>
-                <td class="md:px-3 py-2  text-[#F8F5F0] dark:text-sky-400">
-                  70 Den
-                </td>
-              </tr>
-              <tr class="md:bg-neutral-primary">
-                <th class="px-3 py-2 md:font-medium text-heading whitespace-nowrap text-[#F8F5F0] dark:text-sky-400">
-                  Icecoffee
-                </th>
-                <td class="md:px-3 py-2  text-[#F8F5F0] dark:text-sky-400">
-                  70 Den
-                </td>
-              </tr>
-              <tr class="md:bg-neutral-primary">
-                <th class="px-3 py-2 md:font-medium text-heading whitespace-nowrap text-[#F8F5F0] dark:text-sky-400">
-                  Capuchine
-                </th>
-                <td class="md:px-3 py-2  text-[#F8F5F0] dark:text-sky-400">
-                  70 Den
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div className="min-h-screen bg-[url('/654321.png')] bg-cover bg-center py-12 px-4 md:px-12 text-[#4B2E2B]">
+      {/* Decorative Images Section */}
+      <div className="flex flex-wrap justify-center gap-8 mb-8">
+        <img
+          src={ImgMcoffee}
+          alt="Making Coffee"
+          className="w-56 h-40 object-cover rounded-lg shadow-md"
+        />
+        <img
+          src={ImgMcake}
+          alt="Making Cake"
+          className="w-56 h-40 object-cover rounded-lg shadow-md"
+        />
       </div>
-      <br />
-      <div
-        className="relative bg-amber-900 p-20 
-           max-w-4/10 bottom-150 max-h-5/10 left-270 "
-      >
-        <h3 className="relative md:text-[#F8F5F0] font-bold md:left-20 font-serif">
-          Bites
-        </h3>
-        <hr class=" relative my-4 w-1/2 mx-auto md:border-t md:border-[#F8F5F0] right-50" />
-        <div>
-          <img
-            src={Imgcake}
-            className="relative  w-96 h-48 md:object-cover rotate-12 left-80"
-          />
-        </div>
-        <p className="relative tracking-tight md:text-[#F8F5F0] border-3 border-brown w-40 h-10 pl-8 p-2 left-120 top-2 font-bold">
-          Bites
+
+      {/* Title Header */}
+      <div className="text-center max-w-2xl mx-auto mb-12">
+        <h1 className="text-4xl md:text-5xl font-bold mb-4">Coffee & Bites</h1>
+        <hr className="border-[#4B2E2B] w-1/2 mx-auto my-4" />
+        <p className="mb-2 text-sm md:text-base">
+          We serve freshly roasted coffee made from carefully selected beans,
+          brewed with precision and passion.
         </p>
+        <p className="text-sm md:text-base">
+          Pair your cup with our handmade desserts and enjoy a warm, cozy moment
+          in every sip.
+        </p>
+        <hr className="border-[#4B2E2B] w-1/2 mx-auto my-4" />
+      </div>
 
-        <div class="relative overflow-x-auto bottom-40">
-          <table class="w-64 text-xs text-left md:text-body ">
-            <thead class="text-xs md:bg-neutral-secondary-medium"></thead>
+      {/* Menu Cards Container */}
+      <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+        {/* Coffee Section */}
+        <div className="bg-amber-900 text-[#F8F5F0] p-6 md:p-8 rounded-2xl shadow-xl relative overflow-hidden">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-2xl font-bold font-serif">Coffee</h3>
+            <span className="border-2 border-[#F8F5F0] px-3 py-1 font-bold text-sm rounded">
+              Coffee
+            </span>
+          </div>
+          <hr className="border-[#F8F5F0]/40 mb-6" />
 
-            <tbody>
-              <tr class="bg-neutral-primary">
-                <th class="px-3 py-2 font-medium text-heading whitespace-nowrap text-[#F8F5F0] dark:text-sky-400">
-                  Chocolate cake
-                </th>
+          <div className="flex flex-col sm:flex-row items-center gap-6">
+            <table className="w-full text-left text-sm">
+              <tbody>
+                {COFFEE_ITEMS.map((item, index) => (
+                  <tr key={index} className="border-b border-amber-800/50">
+                    <th className="py-2.5 font-medium whitespace-nowrap">
+                      {item.name}
+                    </th>
+                    <td className="py-2.5 text-right font-semibold">
+                      {item.price}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <img
+              src={Imgcoffee}
+              alt="Coffee"
+              className="w-36 h-36 object-cover rounded-xl shadow-lg rotate-6 shrink-0"
+            />
+          </div>
+        </div>
 
-                <td class="px-3 py-2  text-[#F8F5F0] dark:text-sky-400">
-                  70 Den
-                </td>
-              </tr>
+        {/* Bites Section */}
+        <div className="bg-amber-900 text-[#F8F5F0] p-6 md:p-8 rounded-2xl shadow-xl relative overflow-hidden">
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-2xl font-bold font-serif">Bites</h3>
+            <span className="border-2 border-[#F8F5F0] px-3 py-1 font-bold text-sm rounded">
+              Bites
+            </span>
+          </div>
+          <hr className="border-[#F8F5F0]/40 mb-6" />
 
-              <tr class="md:bg-neutral-primary">
-                <th class="px-3 py-2 font-medium text-heading whitespace-nowrap text-[#F8F5F0] dark:text-sky-400">
-                  Victoria sponge
-                </th>
-                <td class="px-3 py-2  text-[#F8F5F0] dark:text-sky-400">
-                  90 Den
-                </td>
-              </tr>
-
-              <tr class="md:bg-neutral-primary">
-                <th class="px-3 py-2 md:font-medium text-heading whitespace-nowrap text-[#F8F5F0] dark:text-sky-400">
-                  Angel food cake
-                </th>
-
-                <td class="md:px-3 py-2  text-[#F8F5F0] dark:text-sky-400">
-                  100 Den
-                </td>
-              </tr>
-              <tr class="md:bg-neutral-primary">
-                <th class="px-3 py-2 md:font-medium text-heading whitespace-nowrap text-[#F8F5F0] dark:text-sky-400">
-                  Black forest cake
-                </th>
-                <td class="md:px-3 py-2  text-[#F8F5F0] dark:text-sky-400">
-                  70 Den
-                </td>
-              </tr>
-              <tr class="md:bg-neutral-primary">
-                <th class="px-3 py-2 md:font-medium text-heading whitespace-nowrap text-[#F8F5F0] dark:text-sky-400">
-                  New York cheesecake
-                </th>
-                <td class="md:px-3 py-2  text-[#F8F5F0] dark:text-sky-400">
-                  80 Den
-                </td>
-              </tr>
-              <tr class="md:bg-neutral-primary">
-                <th class="px-3 py-2 md:font-medium text-heading whitespace-nowrap text-[#F8F5F0] dark:text-sky-400">
-                  Blueberry Cheesecake
-                </th>
-                <td class="md:px-3 py-2  text-[#F8F5F0] dark:text-sky-400">
-                  100 Den
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="flex flex-col sm:flex-row items-center gap-6">
+            <table className="w-full text-left text-sm">
+              <tbody>
+                {BITES_ITEMS.map((item, index) => (
+                  <tr key={index} className="border-b border-amber-800/50">
+                    <th className="py-2.5 font-medium whitespace-nowrap">
+                      {item.name}
+                    </th>
+                    <td className="py-2.5 text-right font-semibold">
+                      {item.price}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <img
+              src={Imgcake}
+              alt="Cake"
+              className="w-36 h-36 object-cover rounded-xl shadow-lg rotate-6 shrink-0"
+            />
+          </div>
         </div>
       </div>
     </div>

@@ -19,7 +19,7 @@ const Count = () => {
   };
 
   return (
-    <div className="relative top-15 right-90 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-gray-50 p-1 select-none">
+    <div className="relative top-15 right-80 inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-gray-50 p-1 select-none">
       {/* Decrement Button */}
       <button
         className="flex h-7 w-7 items-center justify-center rounded-md bg-red-500 text-sm font-bold text-white transition-colors hover:bg-red-600 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed"

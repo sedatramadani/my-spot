@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Products } from "./Products";
 
 import Button from "./Button";
-import Count from "./Count"; 
+import Count from "./Count";
 
 export default function OurBites({ onAddToCart }) {
   const bitesData = Products?.Bites || [];
@@ -25,7 +25,7 @@ export default function OurBites({ onAddToCart }) {
 }
 
 function BiteItem({ bite, onAddToCart }) {
-  const [quantity, setQuantity] = useState(1); // Standardized quantity state
+  const [quantity, setQuantity] = useState(1);
   const totalPrice = (bite.price * quantity).toFixed(2);
 
   const handleAddToCart = () => {
@@ -39,12 +39,12 @@ function BiteItem({ bite, onAddToCart }) {
           id: `${bite.id}-${Date.now()}`,
           name: bite.name,
           price: bite.price,
-          quantity: quantity, 
+          quantity: quantity,
           pic: bite.pic,
         });
       }
       alert(`Success! ${quantity}x ${bite.name} has been added to your cart.`);
-      setQuantity(1); 
+      setQuantity(1);
     }
   };
 
@@ -66,7 +66,6 @@ function BiteItem({ bite, onAddToCart }) {
           {bite.desc}
         </p>
 
-        
         <div className="h-2 my-2"></div>
 
         <div className="flex items-center justify-between mt-1">
